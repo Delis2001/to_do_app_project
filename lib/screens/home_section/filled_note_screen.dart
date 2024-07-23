@@ -5,11 +5,8 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/screens/home_section/my_note_screen.dart';
 import 'package:to_do_app/screens/home_section/setting_screen.dart';
-import 'package:to_do_app/screens/home_section/share_note_screen.dart';
-import 'package:to_do_app/screens/home_section/to_do_share_screen.dart';
-import 'package:to_do_app/screens/home_section/todo_note_screen.dart';
+
 
 class FilledNoteScreen extends StatefulWidget {
   const FilledNoteScreen({super.key});
@@ -53,9 +50,9 @@ class _FilledNoteScreenState extends State<FilledNoteScreen> {
       _selectedIndex = index;
     });
     if(index == 0){
-       Navigator.push(context, MaterialPageRoute(builder:(_)=> ToDONoteScreen(index: index) ));
+     //  Navigator.push(context, MaterialPageRoute(builder:(_)=> ToDONoteScreen(index: index) ));
     }else if(index == 1){
-  Navigator.push(context, MaterialPageRoute(builder:(_)=> ToDoShareScreen(index: index) ));
+ // Navigator.push(context, MaterialPageRoute(builder:(_)=> ToDoShareScreen(index: index) ));
     }
    
   }
@@ -177,7 +174,29 @@ class _FilledNoteScreenState extends State<FilledNoteScreen> {
             Spacer(),
             IconButton(onPressed: (){}, icon: ImageIcon(Image.asset('assets/images/tag.png',color: Color(0xff6F24E9),).image)),
             Text('category',style: TextStyle(fontWeight: FontWeight.bold),),
-              IconButton(onPressed: (){}, icon: Icon(Icons.keyboard_arrow_down_rounded,color: Color(0xff6F24E9),))
+              IconButton(onPressed: (){
+                 showDialog(context: context, builder: (context) => SimpleDialog(
+                children: [
+                Column(children: [
+                  ListTile(
+                    onTap: () {
+                      showDialog(context: context, builder: (context) => SimpleDialog(children: [
+                      ListTile(leading:   Image.asset(
+                        color:  Color(0xff6F24E9),
+                        'assets/images/tag.png',),title:  Text('all categories',style: TextStyle(color:Color(0xff6F24E9) )),),
+                      ListTile(leading:   Image.asset('assets/images/tag.png',),title: Text('Kodex'),), 
+                       ListTile(leading:   Image.asset('assets/images/tag.png',),title: Text('Webstack'),),
+                        ListTile(leading:   Image.asset('assets/images/tag.png',),title: Text('Univyerse'),),
+                         ListTile(leading:  Image.asset('assets/images/tag.png',),title: Text('Lorem Iposum'),),
+                    ListTile(leading:   Image.asset('assets/images/tag.png',),title: Text('Nunc ac'),),
+                     ListTile(leading: Icon(Icons.add,color: Color(0xff6F24E9),),title: Text('new category',style:TextStyle(color: Color(0xff6F24E9)),),)
+                      ],),);
+                    },
+                    leading:  Image.asset('assets/images/tag.png',color: Color(0xff6F24E9),),title:  Text('all categories',style: TextStyle(color: Color(0xff6F24E9)),)),
+                   ListTile(leading: Icon(Icons.add,color: Color(0xff6F24E9),)  ,title: Text('new category',style:TextStyle(color: Color(0xff6F24E9)),),)
+                ],)
+              ],),);
+              }, icon: Icon(Icons.keyboard_arrow_down_rounded,color: Color(0xff6F24E9),))
           ],),
             Image.asset('assets/images/vector4.png'),
             Column(
