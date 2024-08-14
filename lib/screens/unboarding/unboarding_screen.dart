@@ -16,12 +16,13 @@ class _IntroScreenDefault extends State<IntroScreenDefault> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: IconButton(onPressed: (){
+      appBar: AppBar(
+        leading: IconButton(onPressed: (){
          Navigator.push(context, MaterialPageRoute(builder: (_)=>StartScreen()));
       }, icon: Text('SKIP', style: TextStyle(fontWeight: FontWeight.bold),)),),
       body: Center(child: Column(children: [
        SizedBox(
-        height: 780,
+        height: MediaQuery.of(context).size.height*0.90,
          child: IntroductionScreen(
                  pages: [
           PageViewModel(
@@ -30,14 +31,8 @@ class _IntroScreenDefault extends State<IntroScreenDefault> {
               mainAxisAlignment: MainAxisAlignment.center,   
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 160),
-                  child: Text(
-                    '_ _ _',
-                    style: TextStyle(
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  padding: const EdgeInsets.only(top: 205),
+                  child: Image.asset('assets/images/nav.png')
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 50),
@@ -52,13 +47,13 @@ class _IntroScreenDefault extends State<IntroScreenDefault> {
                 SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Text(
-                    'You can easily manage all of your daily todos and notes in ToDO for free',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
+                  child: RichText(textAlign: TextAlign.center,text: TextSpan(text:  'You can easily manage all of your daily ',style: TextStyle(color: Colors.black,fontSize: 16),children: [
+                    TextSpan(text: '\n todos and notes in ',style: TextStyle(color:Colors.black,fontSize: 16),children: [
+                      TextSpan(text: ' ToDO ',style: TextStyle(color:  Color(0xff6F24E9),fontSize: 16),children: [
+                        TextSpan(text: 'for free',style: TextStyle(color:Colors.black,fontSize: 16))
+                      ])
+                    ])
+                  ]),)
                 ),
               ],
             ),
@@ -71,13 +66,7 @@ class _IntroScreenDefault extends State<IntroScreenDefault> {
                 height: 296,
                 width: 271,
                 'assets/images/frame.png'),
-            titleWidget:   Text(
-                  '_ _ _',
-                  style: TextStyle(
-                    fontSize: 27,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+            titleWidget:   Image.asset('assets/images/nav.png'),
               bodyWidget: Column(
               children: [
                 SizedBox(height: 20),
@@ -91,13 +80,11 @@ class _IntroScreenDefault extends State<IntroScreenDefault> {
                 SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Text(
-                    'In ToDO you can create your personalized routine to stay productive',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
+                  child: RichText(textAlign: TextAlign.center,text: TextSpan(text: 'In',style: TextStyle(color: Colors.black,fontSize: 16),children: [
+                    TextSpan(text: ' ToDO ',style: TextStyle(color: Color(0xff6F24E9),fontSize: 16),children: [
+                      TextSpan(text: 'you can create your personalized routine to stay productive',style: TextStyle(color: Colors.black,fontSize: 16))
+                    ])
+                  ]),),
                 ),
                   SizedBox(height: 90,)
               ],
@@ -108,13 +95,7 @@ class _IntroScreenDefault extends State<IntroScreenDefault> {
           ),
           PageViewModel(
              image: Image.asset('assets/images/frame2.png'),
-           titleWidget: Text(
-                    '_ _ _',
-                    style: TextStyle(
-                      fontSize: 27,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ) , 
+           titleWidget: Image.asset('assets/images/nav.png'),
             bodyWidget: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -129,13 +110,11 @@ class _IntroScreenDefault extends State<IntroScreenDefault> {
                 SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Text(
-                    'You can organize your ToDOs by adding your tasks into separate categories',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
+                  child:RichText(textAlign: TextAlign.center,text: TextSpan(text:  'You can organize your ',style: TextStyle(color: Colors.black,fontSize: 16),children: [
+                    TextSpan(text: 'ToDOs ',style: TextStyle(color: Color(0xff6F24E9),fontSize: 16),children: [
+                      TextSpan(text: 'by adding\n your tasks into separate categories',style: TextStyle(color: Colors.black,fontSize: 16))
+                    ])
+                  ]))
                 ),
                 SizedBox(height: 100,)
               ],
