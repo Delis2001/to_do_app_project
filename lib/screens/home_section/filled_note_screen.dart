@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/providers/to_do_provider.dart';
+import 'package:to_do_app/screens/home_section/search_screen.dart';
 import 'package:to_do_app/screens/home_section/setting_screen.dart';
 import 'package:to_do_app/widgets/after_app_bar_designed_widget.dart';
 import 'package:to_do_app/widgets/todo_drawer.dart';
@@ -33,6 +34,10 @@ class _FilledNoteScreenState extends State<FilledNoteScreen> {
       // Navigator.push(context, MaterialPageRoute(builder:(_)=> ToDoShareScreen(index: index) ));
     }
   }
+  // For the searchTextField
+  void openSearchScreen(){
+     Navigator.push(context, MaterialPageRoute(builder: (_)=> SearchScreen()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +58,7 @@ class _FilledNoteScreenState extends State<FilledNoteScreen> {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: openSearchScreen,
                 icon: Icon(
                   Icons.search,
                   color: Color(0xff6F24E9),
@@ -99,7 +104,6 @@ class _FilledNoteScreenState extends State<FilledNoteScreen> {
                                 : Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                      
                                      ToDoListTile()

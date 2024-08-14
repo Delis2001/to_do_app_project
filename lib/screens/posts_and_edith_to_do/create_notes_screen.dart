@@ -18,22 +18,30 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
   final TextEditingController titleController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final noteProvider = Provider.of<NoteProvider>(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
-              final title = titleController.text.trim();
-              final content = contentController.text.trim();
-              if (title.isNotEmpty && content.isNotEmpty) {
-                final category =
-                    NoteCategoryModel(title: title, content: content);
-                Provider.of<NoteCategoryProvider>(context, listen: false)
-                    .addCategory(category);
-                Navigator.of(context).pop();
-              } else {
-                Navigator.of(context).pop();
-                //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please enter both title and content separated by ":"')));
-              }
+      NoteModel newNote = NoteModel(
+      title: titleController.text.trim(),
+      content: contentController.text.trim(),
+      createdAt: DateTime.now(),
+    );
+         Navigator.pop(context);
+          noteProvider.addNote(newNote);
+              // final title = titleController.text.trim();
+              // final content = contentController.text.trim();
+              // if (title.isNotEmpty && content.isNotEmpty) {
+              //   final category =
+              //       NoteCategoryModel(title: title, content: content);
+              //   Provider.of<NoteCategoryProvider>(context, listen: false)
+              //       .addCategory(category);
+              //   Navigator.of(context).pop();
+              // } else {
+              //   Navigator.of(context).pop();
+              //   //ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Please enter both title and content separated by ":"')));
+              // }
             },
             icon: Icon(Icons.arrow_back)),
         title: Text('Notes'),
@@ -86,7 +94,9 @@ class _CreateNotesScreenState extends State<CreateNotesScreen> {
                 keyboardType: TextInputType.multiline,
                 decoration: InputDecoration(
                     hintText: 'Quick Note...',
-                    hintStyle: TextStyle(color: Color(0xff6F24E9),),
+                    hintStyle: TextStyle(
+                      color: Color(0xff6F24E9),
+                    ),
                     border: UnderlineInputBorder(borderSide: BorderSide.none)),
               ),
             ),

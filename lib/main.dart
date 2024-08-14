@@ -1,6 +1,8 @@
 // ignore_for_file: unused_import
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:to_do_app/firebase_options.dart';
 import 'package:to_do_app/providers/note_category_provider.dart';
 import 'package:to_do_app/providers/to_do_provider.dart';
 import 'package:to_do_app/screens/forget_password/reset_new_password_screen.dart';
@@ -17,7 +19,11 @@ import 'package:to_do_app/screens/unboarding/unboarding_screen.dart';
 import 'package:provider/provider.dart';
 
 
-void main() {
+Future<void> main() async {
+      WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MainApp());
 }
 
@@ -26,14 +32,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) =>NoteCategoryProvider() ,),
-      ChangeNotifierProvider(create: (context) =>ToDoProvider() ,)
-    ],
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: IntroScreen()  ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: MultiProvider(providers: [
+          ChangeNotifierProvider(create: (context) =>NoteProvider() ,),
+          ChangeNotifierProvider(create: (context) =>ToDoProvider() ,)
+        ],
+          child: const MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(
+              body: IntroScreen()  ),
+          ),
+        ),
       ),
     );
   }

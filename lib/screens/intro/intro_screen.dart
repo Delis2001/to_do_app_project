@@ -16,9 +16,8 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 4), () { 
+    Timer(Duration(seconds: 3), () { 
       Navigator.push(context, MaterialPageRoute(builder: (_)=>IntroScreenDefault()));
     });
   }

@@ -6,8 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/datas/category_data.dart';
 import 'package:to_do_app/providers/note_category_provider.dart';
+import 'package:to_do_app/screens/home_section/search_screen.dart';
 
 import 'package:to_do_app/screens/home_section/setting_screen.dart';
 import 'package:to_do_app/screens/posts_and_edith_to_do/create_notes_screen.dart';
@@ -39,6 +39,10 @@ class _EmptyNoteHomeScreenState extends State<EmptyNoteHomeScreen> {
     }
    
   }
+  // For the searchTextField
+  void openSearchScreen(){
+     Navigator.push(context, MaterialPageRoute(builder: (_)=> SearchScreen()));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +58,10 @@ class _EmptyNoteHomeScreenState extends State<EmptyNoteHomeScreen> {
           backgroundImage: Image.asset('assets/images/circle_avatar.png').image,),
       ),
       actions: [
-      IconButton(onPressed: (){}, icon: Icon(Icons.search,color: Color(0xff6F24E9) ,size: 30,)), 
+      IconButton(onPressed:openSearchScreen, icon: Icon(Icons.search,color: Color(0xff6F24E9) ,size: 35,)), 
       IconButton(onPressed: (){}, icon: Icon(Icons.notifications_on_rounded,color: Color(0xff6F24E9) ,size: 35,))
      ],),
-      body:Consumer<NoteCategoryProvider>(builder: (context, NoteCategoryProvider, child) {
+      body:Consumer<NoteProvider>(builder: (context, NoteProvider, child) {
         return  Column(children: [
        SingleChildScrollView(
         child: Center(
@@ -66,7 +70,7 @@ class _EmptyNoteHomeScreenState extends State<EmptyNoteHomeScreen> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-             NoteCategoryProvider.note.isEmpty ?Center(child: Column(
+             NoteProvider.notes.isEmpty ?Center(child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                    Image.asset('assets/images/checklist.png'),
